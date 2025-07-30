@@ -26,6 +26,14 @@
 
 8. Khởi động 2 module “Apache” và “MySQL”.
 
-9. Vào trình duyệt, gõ: http://localhost/traffic_violation_lookup/index.php, trang web sẽ được hiển thị.
+9. Click vào nút “Admin” ở module “MySQL”, cửa số trình duyệt phpMyAdmin hiện ra, tìm đến tab SQL. Tab này cho phép viết và thực thi các đoạn mã SQL.
+
+10. Quay lại xampp/htdocs/traffic_violation_lookup/assets/database/db_sql_code.txt.
+
+11. Copy toàn bộ thông tin trong file db_sql_code.txt và dán vào trang trắng tại tab SQL của của sổ trình duyệt phpMyAdmin.
+
+12. Tìm đến nút “Thực hiện ” phía dưới trang viết code và click để thực thi đoạn code vừa dán.
+
+13. Vào trình duyệt, mở 1 tab mới và gõ: http://localhost/traffic_violation_lookup/index.php, trang web sẽ được hiển thị.
 
 
