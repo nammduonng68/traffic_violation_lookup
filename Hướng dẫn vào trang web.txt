@@ -30,7 +30,7 @@
 
 10. Quay lại xampp/htdocs/traffic_violation_lookup/assets/database/db_sql_code.txt.
 
-11. Copy toàn bộ thông tin trong file db_sql_code.txt và dán vào trang trắng tại tab SQL của của sổ trình duyệt phpMyAdmin.
+11. Copy toàn bộ thông tin trong file db_sql_code.txt và dán vào trang trắng tại tab SQL của cửa sổ trình duyệt phpMyAdmin.
 
 12. Tìm đến nút “Thực hiện ” phía dưới trang viết code và click để thực thi đoạn code vừa dán.
 
