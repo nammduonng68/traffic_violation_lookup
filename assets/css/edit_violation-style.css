@@ -1,0 +1,44 @@
+.admin-header {
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .panel-admin {
+            border-color: #337ab7;
+        }
+        
+        .panel-admin > .panel-heading {
+            background-color: #337ab7;
+            color: white;
+            border-color: #337ab7;
+        }
+        
+        .required-field:after {
+            content: " *";
+            color: red;
+        }
+        
+        /* Alert messages */
+        .alert-container {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        }
+        
+        .violation-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border-left: 5px solid #337ab7;
+        }
+        
+        .violation-info h4 {
+            margin-top: 0;
+            color: #337ab7;
+        }

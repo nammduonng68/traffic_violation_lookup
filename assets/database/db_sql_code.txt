@@ -1,0 +1,98 @@
+CREATE DATABASE traffic_violations;
+USE traffic_violations;
+CREATE TABLE User (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    address TEXT,
+    identity_number VARCHAR(20),
+    role ENUM('Admin','User') NOT NULL DEFAULT 'User',
+    UNIQUE KEY (username),
+    UNIQUE KEY (email),
+    UNIQUE KEY (identity_number),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Vehicle (
+    vehicle_id INT PRIMARY KEY AUTO_INCREMENT,
+    license_plate VARCHAR(20) UNIQUE NOT NULL,
+    driver_license VARCHAR(50),
+    make VARCHAR(50),
+    model VARCHAR(50),
+    color VARCHAR(30),
+    year INT,
+    vehicle_type VARCHAR(50),
+    owner_id INT,
+    FOREIGN KEY (owner_id) REFERENCES User(user_id)
+);
+CREATE TABLE Violation (
+    violation_id INT AUTO_INCREMENT PRIMARY KEY,
+    violation_code VARCHAR(30) NOT NULL,
+    violation_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    min_fine DECIMAL(12, 2),
+    max_fine DECIMAL(12, 2),
+    UNIQUE KEY (violation_code)
+);
+CREATE TABLE UserViolation (
+    user_violation_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    violation_id INT NOT NULL,
+    vehicle_id INT,
+    fine_amount DECIMAL(12,2) NOT NULL,
+    violation_location TEXT,
+    status VARCHAR(50) DEFAULT 'pending',
+    payment_status VARCHAR(50) DEFAULT 'unpaid',
+    processed_by VARCHAR(100),
+    processed_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (violation_id) REFERENCES Violation(violation_id),
+    FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
+);
+
+INSERT INTO Violation (violation_id, violation_code, violation_name, description, min_fine, max_fine) VALUES
+(1, 'V001', 'Vượt đèn đỏ', 'Không chấp hành hiệu lệnh đèn tín hiệu giao thông', 18000000.00, 20000000.00),
+(2, 'V002', 'Quá tốc độ trên 20km/h', 'Điều khiển xe chạy quá tốc độ quy định trên 20 km/h', 6000000.00, 8000000.00),
+(3, 'V003', 'Nồng độ cồn vượt mức', 'Nồng độ cồn vượt quá 80 mg/100 ml máu hoặc vượt quá 0,4 mg/1 lít khí thở', 8000000.00, 10000000.00),
+(4, 'V004', 'Đi ngược chiều', 'Đi ngược chiều của đường một chiều và đường có biển cấm đi ngược chiều', 18000000.00, 20000000.00),
+(5, 'V005', 'Không có GPLX', 'Điều khiển phương tiện không có giấy phép lái xe', 4000000.00, 6000000.00),
+(6, 'V006', 'Lạng lách đánh võng', 'Điều khiển xe lạng lách, đánh võng trên đường bộ', 8000000.00, 10000000.00),
+(7, 'V007', 'Sử dụng điện thoại khi lái xe', 'Dùng tay cầm và sử dụng điện thoại hoặc các thiết bị điện tử khi đang tham gia giao thông', 4000000.00, 6000000.00),
+(8, 'V008', 'Đi vào đường cao tốc', 'Điều khiển xe mô tô, xe máy đi vào đường cao tốc', 4000000.00, 6000000.00),
+(9, 'V009', 'Không đội mũ bảo hiểm', 'Người điều khiển xe máy không đội mũ bảo hiểm', 400000.00, 600000.00),
+(10, 'V010', 'Không có bảo hiểm TNDS', 'Điều khiển xe không có bảo hiểm trách nhiệm dân sự bắt buộc', 400000.00, 600000.00),
+(11, 'V011', 'Gây tai nạn bỏ chạy', 'Gây tai nạn giao thông không dừng ngay phương tiện, không giữ nguyên hiện trường, không trợ giúp người bị nạn', 8000000.00, 10000000.00),
+(12, 'V012', 'Cản trở kiểm tra', 'Cản trở, không chấp hành yêu cầu kiểm tra, kiểm soát của người thực thi công vụ', 35000000.00, 37000000.00),
+(13, 'V013', 'Đỗ xe sai quy định', 'Dừng đỗ xe không đúng nơi quy định', 800000.00, 1000000.00),
+(14, 'V014', 'Quá tốc độ trên 35km/h', 'Điều khiển xe chạy quá tốc độ quy định trên 35 km/h', 12000000.00, 14000000.00),
+(15, 'V015', 'Biển số giả', 'Lái xe không gắn đủ biển số, che dán biển số, gắn biển số giả', 10000000.00, 12000000.00),
+(16, 'V016', 'Đi ngược chiều trên cao tốc', 'Điều khiển xe đi ngược chiều trên đường cao tốc, lùi xe trên đường cao tốc', 30000000.00, 40000000.00),
+(17, 'V017', 'Quay đầu xe trên cao tốc', 'Quay đầu xe trên đường cao tốc', 30000000.00, 40000000.00),
+(18, 'V018', 'Không nhường đường', 'Không giảm tốc độ hoặc dừng lại và nhường đường khi lái xe từ ngõ ra đường chính', 4000000.00, 6000000.00),
+(19, 'V019', 'Mở cửa xe gây tai nạn', 'Mở cửa xe, để cửa xe mở không bảo đảm an toàn, gây tai nạn giao thông', 20000000.00, 22000000.00),
+(20, 'V020', 'Không chằng buộc hàng hóa', 'Vận chuyển hàng hóa là phương tiện vận tải, máy móc, thiết bị kỹ thuật, hàng dạng trụ không chằng buộc theo quy định', 18000000.00, 22000000.00);
+
+INSERT INTO user (user_id, username, password, full_name, email, phone, address, identity_number, role, created_at) VALUES
+(1, 'admin123', 'admin123', 'Nguyễn Văn Quản Trị', 'admin@example.com', '0901234567', 'Số 10 Đường Lê Lợi, Quận 1, TP.HCM', '079123456789', 'admin', '2025-01-15 08:30:00'),
+(2, 'user1', 'user1', 'Nguyễn Văn A', 'nguyena@example.com', '0912345678', 'Số 25 Đường Nguyễn Huệ, Quận 1, TP.HCM', '079234567890', 'user', '2025-02-20 10:15:00'),
+(3, 'user2', 'user2', 'Phạm Thị B', 'phamb@example.com', '0923456789', '15 Đường Trần Hưng Đạo, Quận 5, TP.HCM', '079345678901', 'user', '2025-03-05 14:45:00'),
+(4, 'admin234', 'admin234', 'Lê Minh Tuấn', 'tuan@example.com', '0934567890', '42 Đường Võ Văn Tần, Quận 3, TP.HCM', '079456789012', 'admin', '2025-03-10 09:20:00'),
+(5, 'user3', 'user3', 'Vũ Nam Dương', 'vuduong@example.com', '123456789', '78 Đường Cách Mạng Tháng 8, Quận 10, TP.HCM', '079567890123', 'user', '2025-04-01 11:30:00');
+
+INSERT INTO vehicle (vehicle_id, license_plate, driver_license, make, model, color, year, vehicle_type, owner_id) VALUES
+(1, '51F-12345', 'DL12345678', 'Honda', 'SH', 'Đen', 2022, 'Xe máy', 2),
+(2, '51A-67890', 'DL23456789', 'Toyota', 'Vios', 'Trắng', 2021, 'Ô tô', 2),
+(3, '59H-54321', 'DL34567890', 'Yamaha', 'Exciter', 'Xanh', 2023, 'Xe máy', 3),
+(4, '51G-13579', 'DL45678901', 'Ford', 'Ranger', 'Đỏ', 2020, 'Ô tô', 4),
+(5, '50K-24680', 'DL56789012', 'Vinfast', 'Lux A', 'Bạc', 2022, 'Ô tô', 5),
+(6, '59P-97531', 'DL67890123', 'Suzuki', 'Raider', 'Vàng', 2021, 'Xe máy', 3);
+
+INSERT INTO userviolation (user_violation_id, user_id, violation_id, vehicle_id, fine_amount, violation_location, status, payment_status, processed_by, processed_at) VALUES
+(1, 2, 1, 1, 19000000, 'Số 25 Đường Nguyễn Huệ, Quận 1, TP.HCM', 'Đã xử lý', 'Đã thanh toán', 'Nguyễn Văn Quản Trị', '2025-04-15 09:30:00'),
+(2, 3, 3, 3, 9000000, 'Ngã tư Hàng Xanh, Quận Bình Thạnh, TP.HCM', 'Đã xử lý', 'Đã thanh toán', 'Lê Minh Tuấn', '2025-04-20 14:20:00'),
+(3, 2, 2, 2, 7000000, 'Số 25 Đường Nguyễn Huệ, Quận 1, TP.HCM', 'Đang xử lý', 'Chưa thanh toán', NULL, NULL),
+(4, 5, 4, 5, 19500000, 'Ngã sáu Phù Đổng, Quận 1, TP.HCM', 'Đã xử lý', 'Đã thanh toán', 'Lê Minh Tuấn', '2025-05-01 10:45:00'),
+(5, 3, 6, 6, 19000000, '15 Đường Trần Hưng Đạo, Quận 5, TP.HCM', 'Đang xử lý', 'Chưa thanh toán', NULL, NULL),
+(6, 4, 5, 4, 19000000,'Số 10 Đường Lê Lợi, Quận 1, TP.HCM', 'Đã xử lý', 'Đã thanh toán', 'Nguyễn Văn Quản Trị', '2025-05-05 16:15:00');

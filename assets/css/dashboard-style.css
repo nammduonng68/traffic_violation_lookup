@@ -1,0 +1,90 @@
+body {
+    padding-top: 70px;
+    background-color: #f5f5f5;
+    font-family: 'Calibri', sans-serif;
+}
+.jumbotron {
+    background-color: #337ab7;
+    color: white;
+    margin-top: -20px;
+    padding: 48px 0;
+    margin-bottom: 30px;
+}
+.dashboard-widget {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 120px;
+}
+.dashboard-widget h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    color: #337ab7;
+}
+.dashboard-widget .stats-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #337ab7;
+}
+.dashboard-widget .stats-description {
+    font-size: 12px;
+    color: #777;
+}
+.search-form {
+    margin-bottom: 20px;
+}
+.table-responsive {
+    margin-top: 20px;
+}
+.nav-tabs {
+    margin-bottom: 20px;
+}
+.violation-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.violation-stat:last-child {
+    border-bottom: none;
+}
+.violation-badge {
+    background-color: #337ab7;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+}
+.status-paid {
+    color: #5cb85c;
+}
+.status-unpaid {
+    color: #d9534f;
+}
+.welcome-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.not-logged-in-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.load-more-container {
+    text-align: center;
+    margin: 20px 0;
+}
+.table-container {
+    position: relative;
+}
+.loading-indicator {
+    display: none;
+    text-align: center;
+    padding: 15px;
+}
