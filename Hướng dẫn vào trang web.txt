@@ -1,0 +1,31 @@
+-- Hướng dẫn vào trang web --
+1. Tải phần mềm XAMPP về máy.
+
+2. Tìm đến thư mục “xampp” tại ví trí cài phần mềm từ trước đó trên máy.
+
+3. Tiếp theo click vào thư mục “htdocs”. Tại đây, copy thư mục “traffic_violation_lookup” được clone từ github vào đây.
+
+4. Quay lại thư mục “xampp”, lần lượt click “phpMyAdmin” -> “config.inc” (Chọn mở file “config.inc” với VSCode).
+
+5. Trong file “config.inc”, tìm đến đoạn code sau:
+	$cfg['Servers'][$i]['host'] = '';
+=> Đổi thành:
+	$cfg['Servers'][$i]['host'] = '127.0.0.1:3307';
+=> Lưu và thoát file.
+
+6. Quay lại thư mục “xampp”, tìm đến file “xampp-control”, chọn “Run as administrator”.
+
+7. Tại phần module MySQL, click vào nút “Config” ở phần action, tiếp đó chọn my.ini.
+
+8. File txt my.ini hiện ra, tìm đến đoạn mã sau:
+	# The MySQL server
+	default-character-set=utf8mb4
+	[mysqld]
+	port=3306
+=> Đổi phần post = 3306 -> 3307, sau đó lưu và thoát.
+
+8. Khởi động 2 module “Apache” và “MySQL”.
+
+9. Vào trình duyệt, gõ: http://localhost/traffic_violation_lookup/index.php, trang web sẽ được hiển thị.
+
+
